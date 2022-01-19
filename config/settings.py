@@ -5,7 +5,7 @@ import dj_database_url
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 from django.core.management.utils import get_random_secret_key
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'django_heroku',
-    
 
     'api',
     'category',
@@ -75,11 +74,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": 'Shopping',
+        "PASSWORD": 'ilovedarknet',
+        'USER': 'abbos',
+        'PORT': 5432,
     }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -102,9 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication', ],
-    'DEFAULT_FILTER_BACKENDS':['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
-   
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -131,7 +132,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = "/media/"

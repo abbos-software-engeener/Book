@@ -1,11 +1,12 @@
 import os
-import django_heroku
+
 import sys
 import dj_database_url
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 from django.core.management.utils import get_random_secret_key
-
+import django_heroku
+django_heroku.settings(locals())
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -121,7 +122,6 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-django_heroku.settings(locals())
 
 TIME_ZONE = 'Asia/Tashkent'
 
